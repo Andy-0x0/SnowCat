@@ -218,7 +218,7 @@ class SnowCat:
         :param course_abb:      The abbreviation of the course (e.g. CS for Computer Science)
         :param course_num:      The number of the course (e.g. 498 is the course number for CS498)
         :param course_ids:      All course IDs that you are interested in (the 5-digit course id you can find in either the course explorer or the register portal)
-        :param on_trigger:      The function to call when the course is available
+        :param on_trigger:      The function to call per success fetching
         :param interval:        The waiting time for a second course-availability-inquiry is initiated (in seconds)
         :param timeout:         The time to wait for dom-wise-event to be noticed (in milliseconds)
         :return: None
