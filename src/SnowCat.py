@@ -31,7 +31,7 @@ class SnowCat:
         self.params = {}
         self.headers = {}
 
-       # init user config
+        # init user config
         load_dotenv(config_path)
         self.username = os.getenv("UIUC_USERNAME")
         self.password = os.getenv("UIUC_PASSWORD")
@@ -59,6 +59,8 @@ class SnowCat:
 
         self.params["txt_subject"] = course_abb
         self.params["txt_courseNumber"] = course_num
+        self.params["pageOffset"] = 0
+        self.params["pageMaxSize"] = 10000
 
         response = requests.get(self.prefix, params=self.params, headers=self.headers)
         response = response.json()
@@ -255,6 +257,8 @@ class SnowCat:
                     winsound.MessageBeep()
                     return
                 else:
+                    self.logger.error(role="SnowCat", message=f"Failed due to {str(e)}, retrying for failover!")
+                    winsound.MessageBeep()
                     self.was_failed = True
                     self.refresh(course_field, course_num, timeout=timeout)
                     continue
@@ -270,8 +274,8 @@ if __name__ == "__main__":
     cat.watch(
         course_field="Computer Science",
         course_abb="CS",
-        course_num=421,
-        course_ids=31375,
+        course_num=498,
+        course_ids=61698,
         on_trigger=None,
         interval=15,
         timeout=10*1000
